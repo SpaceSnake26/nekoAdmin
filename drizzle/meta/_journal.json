@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1776758655828,
+      "tag": "0000_fair_gamora",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1776776467597,
+      "tag": "0001_spotty_goliath",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1778661131549,
+      "tag": "0002_numerous_terror",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1778664122320,
+      "tag": "0003_lean_mariko_yashida",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1778673010551,
+      "tag": "0004_lonely_ted_forrester",
+      "breakpoints": true
+    }
+  ]
+}

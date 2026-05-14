@@ -1,0 +1,219 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+  --font-mono: var(--font-geist-mono, ui-monospace, monospace);
+  --font-heading: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-warning: var(--warning);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  /* Warm cream background — easier on the eyes than pure white,
+     slight warm tint reads as friendly without becoming yellow. */
+  --background: oklch(0.985 0.005 85);
+  --foreground: oklch(0.22 0.012 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.012 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.012 250);
+  --primary: oklch(0.62 0.16 158);
+  --primary-foreground: oklch(0.99 0.005 158);
+  --secondary: oklch(0.955 0.005 85);
+  --secondary-foreground: oklch(0.25 0.012 250);
+  --muted: oklch(0.955 0.005 85);
+  --muted-foreground: oklch(0.5 0.012 250);
+  --accent: oklch(0.94 0.012 158);
+  --accent-foreground: oklch(0.3 0.05 158);
+  --destructive: oklch(0.6 0.2 22);
+  --warning: oklch(0.7 0.16 65);
+  --border: oklch(0.91 0.008 85);
+  --input: oklch(0.91 0.008 85);
+  --ring: oklch(0.62 0.16 158);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.97 0.006 85);
+  --sidebar-foreground: oklch(0.28 0.012 250);
+  --sidebar-primary: oklch(0.62 0.16 158);
+  --sidebar-primary-foreground: oklch(0.99 0.005 158);
+  --sidebar-accent: oklch(0.93 0.008 85);
+  --sidebar-accent-foreground: oklch(0.25 0.012 250);
+  --sidebar-border: oklch(0.9 0.008 85);
+  --sidebar-ring: oklch(0.62 0.16 158);
+}
+
+.dark {
+  --background: oklch(0.16 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.21 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.74 0.14 160);
+  --primary-foreground: oklch(0.14 0.02 160);
+  --secondary: oklch(0.24 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.24 0 0);
+  --muted-foreground: oklch(0.66 0 0);
+  --accent: oklch(0.25 0 0);
+  --accent-foreground: oklch(0.97 0 0);
+  --destructive: oklch(0.68 0.2 22);
+  --warning: oklch(0.82 0.15 75);
+  --border: oklch(0.28 0 0);
+  --input: oklch(0.28 0 0);
+  --ring: oklch(0.74 0.14 160);
+  --sidebar: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(0.82 0 0);
+  --sidebar-primary: oklch(0.74 0.14 160);
+  --sidebar-primary-foreground: oklch(0.14 0.02 160);
+  --sidebar-accent: oklch(0.22 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(0.24 0 0);
+  --sidebar-ring: oklch(0.74 0.14 160);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
+  }
+  html {
+    @apply antialiased;
+  }
+  .tabular-nums {
+    font-variant-numeric: tabular-nums slashed-zero;
+  }
+}
+
+/* Staggered reveal used on list/grid children via --index custom prop. */
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-child {
+  opacity: 0;
+  animation: stagger-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--index, 0) * 30ms);
+}
+
+/* Subtle shimmer for skeleton/placeholder. */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-muted) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Pulse for live status dots — slower, more elegant than default ping. */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: pulse-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Kanban ambient column icons. Subtle motion only — never distract. */
+@keyframes flicker {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 1; filter: drop-shadow(0 0 2px currentColor); }
+  20%      { transform: translateY(-1px) scale(1.08); opacity: 0.92; filter: drop-shadow(0 0 4px currentColor); }
+  50%      { transform: translateY(0.5px) scale(0.96); opacity: 1; filter: drop-shadow(0 0 1px currentColor); }
+  75%      { transform: translateY(-0.5px) scale(1.04); opacity: 0.95; filter: drop-shadow(0 0 3px currentColor); }
+}
+.anim-flicker { animation: flicker 1.4s ease-in-out infinite; transform-origin: 50% 80%; }
+
+@keyframes drive {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+.anim-drive { animation: drive 2.4s ease-in-out infinite; }
+.anim-drive-slow { animation: drive 3.2s ease-in-out infinite 0.4s; }
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-8deg); }
+  50%      { transform: rotate(14deg); }
+}
+.anim-wobble { animation: wobble 0.9s ease-in-out infinite; transform-origin: 25% 80%; }
+
+@keyframes bubble {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-2px) rotate(2deg); }
+}
+.anim-bubble { animation: bubble 2s ease-in-out infinite; }
+
+@keyframes celebrate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25%      { transform: scale(1.15) rotate(-6deg); }
+  75%      { transform: scale(1.1) rotate(8deg); }
+}
+.anim-celebrate { animation: celebrate 2.6s ease-in-out infinite; }
